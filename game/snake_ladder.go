@@ -36,7 +36,14 @@ type snakeLadder struct {
 func (s snakeLadder) Play() {
 	for s.Players.Len() > 0 {
 		top := s.Players.Pop().(player.Player)
-		fmt.Println("==========", top.GetName(), "is playing =========")
-
+		fmt.Printf("%s is playing\n", top.GetName())
+		total := s.Dice.Roll()
+		position := s.Board.NextPosition(top.CurrentPosition(), total)
+		if position == -1 {
+			fmt.Printf("**** %s wins after %d moves ****\n", top.GetName(), top.MovesPlayed() + 1)
+			continue
+		}
+		top.NewPosition(position)
+		s.Players.Push(top)
 	}
 }

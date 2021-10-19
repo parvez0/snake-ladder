@@ -53,15 +53,15 @@ type board struct {
 func (b board) NextPosition(lastPos, diceRes int) int {
 	newPos := lastPos + diceRes
 	if v, e := b.Snake[newPos]; e {
-		fmt.Printf("Bit by snake %d -> %d\n", newPos, v)
+		fmt.Printf("     Bit by snake %d -> %d\n", newPos, v)
 		newPos = v
 	}
 	if v, e := b.Ladder[newPos]; e {
-		fmt.Printf("Climbed ladder %d -> %d\n", newPos, v)
+		fmt.Printf("     Climbed ladder %d -> %d\n", newPos, v)
 		newPos = v
 	}
 	if newPos >= b.Size {
-		fmt.Printf("Goal Reached\n")
+		fmt.Printf("     Goal Reached\n")
 		return -1
 	}
 	return newPos
