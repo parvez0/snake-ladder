@@ -64,7 +64,7 @@ func (b board) NextPosition(lastPos, diceRes int) int {
 		return lastPos
 	}
 	if newPos == b.Size {
-		fmt.Printf("     Goal Reached\n")g
+		fmt.Printf("     Goal Reached\n")
 		return -1
 	}
 	return newPos
