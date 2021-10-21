@@ -17,11 +17,11 @@ func NewDice(args ...int) Dice {
 	if len(args) > 0 {
 		nDice = NumberOfDice(args[0])
 	}
-	return dice{NumDice: nDice}
+	return dice{DiceCount: nDice}
 }
 
 type dice struct {
-	NumDice NumberOfDice
+	DiceCount NumberOfDice
 }
 
 func (d dice) generateRandom(ch chan int) {
@@ -30,12 +30,13 @@ func (d dice) generateRandom(ch chan int) {
 }
 
 func (d dice) Roll() int {
-	ch :=  make(chan int, d.NumDice)
-	for i:=0; i<int(d.NumDice); i++ {
+	dc := int(d.DiceCount)
+	ch :=  make(chan int, dc)
+	for i:=0; i<dc; i++ {
 		go d.generateRandom(ch)
 	}
 	steps := 0
-	for i:=0; i<int(d.NumDice); i++ {
+	for i:=0; i<dc; i++ {
 		select {
 		case x := <- ch:
 			steps += x
