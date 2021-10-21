@@ -60,10 +60,7 @@ func (b board) NextPosition(lastPos, diceRes int) int {
 		fmt.Printf("     Climbed ladder %d -> %d\n", newPos, v)
 		newPos = v
 	}
-	if newPos > b.Size {
-		return lastPos
-	}
-	if newPos == b.Size {
+	if newPos >= b.Size {
 		fmt.Printf("     Goal Reached\n")
 		return -1
 	}

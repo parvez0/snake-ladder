@@ -13,7 +13,7 @@ type Game interface {
 }
 
 func NewGame(players, numDice int, args ...interface{}) Game {
-	b := board.NewBoard(args)
+	b := board.NewBoard(args...)
 	d := dice.NewDice(numDice)
 	q := queue.NewQueue()
 	for i:=1; i<=players; i++ {
